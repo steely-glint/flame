@@ -15,7 +15,7 @@ var BiFunc = Java.type('java.util.function.BiFunction');
 
 // Endpoints that will be available to the remote user
 var ErrorEndpoint = Java.type('pe.pi.client.device.endpoints.core.ErrorEndpoint');
-var OpenPixelControlEndPoint = new Java.type('pe.pi.client.endpoints.proxy.OpenPixelControlEndPoint');
+var OpenPixelControlEndPoint = Java.type('pe.pi.client.endpoints.proxy.OpenPixelControlEndPoint');
 var HttpEndpoint = Java.type('pe.pi.client.endpoints.proxy.HttpEndpoint');
 var TermEndpoint = Java.type('pe.pi.client.endpoints.proxy.TermEndpoint');
 
