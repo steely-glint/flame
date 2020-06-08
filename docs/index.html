@@ -8,18 +8,15 @@
         <script src="../pipe.js"></script>
         <script type="text/javascript">
             var duct = null;
+            var deviceId;
 
-            function setFriend() {
-                var dev = localStorage['install.html'];
-                makedc(dev);
-            }
             function gotId(id) {
                 duct = new PipeDuct(id);
                 $('#remote').hide();
-                setFriend();
+                makedc();
             }
-            function makedc(deviceId) {
-                console.log("setting deviceId" + deviceId);
+            function makedc() {
+                console.log("use deviceId :" + deviceId);
                 duct.setTo(deviceId);
                 duct.connect().then(function (d) {
                     setTimeout(function () {
@@ -27,9 +24,16 @@
                     }, 100);
                 });
             }
-
+            function getParams(){
+                var us = new URL(document.location);
+                deviceId = us.searchParams.get("id");
+                if (!deviceId){
+                    deviceId= us.pathname.split("/")[1];
+                }
+            }
 
             $(document).ready(function () {
+                getParams();
                 PipeDb.whoAmI(gotId, function (err) {
                     console.log("could not create identity " + err);
                 });
