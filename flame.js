@@ -8,7 +8,7 @@
 
 // Bare necessities
 var Log = Java.type('com.phono.srtplight.Log');
-Log.setLevel(Log.INFO); // VERB, DEBUG,INFO, WARN , ERROR 
+Log.setLevel(Log.DEBUG); // VERB, DEBUG,INFO, WARN , ERROR 
 var App = Java.type('pe.pi.client.small.App'); // base type for a device that receives connections
 var SmallScreen = Java.type('pe.pi.client.small.screen.SmallScreen');
 var BiFunc = Java.type('java.util.function.BiFunction');

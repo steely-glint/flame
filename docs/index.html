@@ -40,7 +40,7 @@
                 });
             });
             function doFlame() {
-                opc = duct.createDataChannel("opc://127.0.0.1:7890");
+                opc = duct.createDataChannel("opc:127.0.0.1:7890");
                 opc.onopen = function (c) {
                     matchColours();
                 }
