@@ -60,6 +60,7 @@ var mapper = new BiFunc(){
         try {
             switch (l) {
                 case 'opc:127.0.0.1:7890':
+                    Log.info("Creating " + l);
                     ret = new  OpenPixelControlEndPoint(s,l,screen);
                     break;
                 case 'http://localhost:8181/':
