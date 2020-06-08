@@ -9,6 +9,7 @@
         <script type="text/javascript">
             var duct = null;
             var deviceId;
+            var opc;
 
             function gotId(id) {
                 duct = new PipeDuct(id);
@@ -38,11 +39,9 @@
                     console.log("could not create identity " + err);
                 });
             });
-            var channel;
             function doFlame() {
-                var opc = duct.createDataChannel("opc://127.0.0.1:7890");
+                opc = duct.createDataChannel("opc://127.0.0.1:7890");
                 opc.onopen = function (c) {
-                    channel = c;
                     matchColours();
                 }
                 opc.onmessage = function (e) {
@@ -66,7 +65,7 @@
                     pixels: values
                 };
                 console.log("sending " + JSON.stringify(message));
-                channel.send(JSON.stringify(message));
+                opc.send(JSON.stringify(message));
             }
             function matchColours() {
                 var video = document.getElementById('ownervideo');
