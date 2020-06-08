@@ -24,6 +24,7 @@
                         doFlame();
                     }, 100);
                 });
+	        
             }
             function getParams(){
                 var us = new URL(document.location);
@@ -46,12 +47,13 @@
                 }
                 opc.onmessage = function (e) {
                     console.log("reply was " + e.data);
+		    matchColours();
                 }
             }
             function update(pix) {
                 var values = [];
                 //console.log("pix ="+JSON.stringify(pix));
-                for (var i = 0; i < 90; i++) {
+                for (var i = 0; i < 30; i++) {
                     var offs = i * 4;
                     var col = "0x" + pix[offs++].toString(16) + pix[offs++].toString(16) + pix[offs++].toString(16);
                     //console.log("pixelcolour "+col);
@@ -73,25 +75,23 @@
                 var context = photo.getContext('2d');
 
 
-                var tick = setInterval(function () {
                     if ((video.videoWidth > 0) && (video.videoHeight > 0)) {
                         var rat = video.height / video.videoHeight;
                         photo.width = video.videoWidth * rat;
                         photo.height = video.videoHeight * rat;
                         photo.height = video.videoHeight * rat;
                         context.drawImage(video, 0, 0, photo.width, photo.height);
-                        x = (photo.width / 2) - 2;
-                        y = 0;
-                        var imgd = context.getImageData(x, y, 1, 90);
+                        x = (photo.width / 3) - 2;
+                        y = photo.height - 30;
+                        var imgd = context.getImageData(x, y, 1, 30);
                         var pix = imgd.data;
                         context.beginPath();
                         context.lineWidth = "2";
                         context.strokeStyle = "red";
-                        context.rect(x - 1, y - 1, 2, 90);
+                        context.rect(x - 1, y - 1, 2, 30);
                         context.stroke();
                         update(pix);
                     }
-                }, 2000);
             }
         </script>
 </head>
@@ -99,7 +99,7 @@
 <H1>flame</H1>
 <div> 
     <canvas width="320" height="240" id="flame-canvas"></canvas>
-    <video width="320" height="240" id="ownervideo" playsinline="true" autoplay="autoplay" src="flame.mp4"'></video>
+    <video width="320" height="240" id="ownervideo" loop="true" playsinline="true" autoplay="autoplay" src="flame.mp4"'></video>
 </div>
 <div><a href="index.html">list of devices</a></div>
 </body>
